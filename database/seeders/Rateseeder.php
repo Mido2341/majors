@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Models\Rate;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Major;
 
-class MajorSeeder extends Seeder
+class Rateseeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Major::factory(10)->create();
+        Rate::factory(10)->create();
     }
 }

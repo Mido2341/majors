@@ -1,26 +1,8 @@
 @extends('adminlte::page')
-@section('title','Major Details')
+@section('title','Doctor Details')
 @section('content')
 
 <a href="{{route('doctor.create')}}" class='btn btn-primary' >Create Doctor</a>
-
-<table class="table">
-
-      <thead class="table table-secondary">
-      <th scope="col">ID</th>
-      <th scope="col">TItle</th>
-      <th scope="col">created_At</th>
-      <th scope="col">updated_At</th>
-      </thead>
-
-      <tbody class="table table-success table-striped-columns">
-          <tr>
-          <td> {{$major->id}}</td>
-          <td> {{$major->title}}</td>
-          <td> {{$major->created_at}}</td>
-          <td> {{$major->updated_at}}</td>
-          </tr>
-  </table>
 
 <table class="table">
 
@@ -37,8 +19,6 @@
       </thead>
 
       <tbody class="table table-success table-striped-columns">
-
-        @foreach ($major->doctors as $doctor)
           <tr>
           <td> {{$doctor->id}}</td>
           <td> {{$doctor->name}}</td>
@@ -48,19 +28,17 @@
           <td> {{$doctor->major->title}}</td>
           <td> {{$doctor->created_at}}</td>
           <td> {{$doctor->updated_at}}</td>
-          <td >
+          <td>
+
           <form action="{{route ('doctor.destroy', $doctor->id ) }}" method= "post">
             @method('DELETE')
             @csrf
               <button class='btn btn-dark'>delete</button>
+
+              <a href="{{route('doctor.edit',$doctor->id)}}" class='btn btn-success'>update</a>
           </form>
-
-         <a href="{{route('doctor.edit',$doctor->id)}}" class='btn btn-success'>update</a>
-
-         <a href="{{route('doctor.show',$doctor->id)}}" class='btn btn-danger'>show</a>
 
           </td>
           </tr>
-          @endforeach
   </table>
 @endsection

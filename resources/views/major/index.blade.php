@@ -9,54 +9,42 @@
     $message='Created Succefully';
 @endphp --}}
 @extends('adminlte::page')
+@section('title','Clinic--Major list')
 @section('content')
-<table>
-      <thead>
-      <th>id</th>
-      <th>title</th>
-      <th>created_at</th>
-      <th>action</th>
+
+<a href="{{route('major.create')}}" class='btn btn-primary' >Create Major</a>
+
+<table class="table">
+
+      <thead class="table table-secondary">
+      <th scope="col">id</th>
+      <th scope="col">title</th>
+      <th scope="col">created_at</th>
+      <th scope="col">updated_at</th>
+
+      <th scope="col">action</th>
       </thead>
-      <tbody>
+
+      <tbody class="table table-success table-striped-columns">
            @foreach ($majors as $major)
           <tr>
           <td> {{$major->id}}</td>
           <td> {{$major->title}}</td>
           <td> {{$major->created_at}}</td>
-          <td>
-          <form action="{{route('majors.delete',$major->id)}}">
-              <button>delete</button>
-
+          <td> {{$major->updated_at}}</td>
+          <td class="d-flex">
+          <form action="{{route('major.destroy',$major->id)}}" method ="post">
+            @method('DELETE')
+            @csrf
+              <button class='btn btn-dark'>delete</button>
           </form>
+
+         <a href="{{route('major.edit',$major->id)}}" class='btn btn-success'>update</a>
+         <a href="{{route('major.show',$major->id)}}" class='btn btn-secondary'>Show</a>
           </td>
-      </tr>
+          </tr>
               @endforeach
   </table>
-{{-- @endsection --}}
-
+  {{$majors->links()}}
 @endsection
-{{-- @section('content')
-<x-sweet-alert type="danger" :message="$message"/> --}}
-  <table>
-        <thead>
-        <th>id</th>
-        <th>title</th>
-        <th>created_at</th>
-        <th>action</th>
-        </thead>
-        <tbody>
-             @foreach ($majors as $major)
-            <tr>
-            <td> {{$major->id}}</td>
-            <td> {{$major->title}}</td>
-            <td> {{$major->created_at}}</td>
-            <td>
-            <form action="{{route('majors.delete',$major->id)}}">
-                <button>delete</button>
 
-            </form>
-            </td>
-        </tr>
-                @endforeach
-    </table>
-{{-- @endsection --}}

@@ -13,7 +13,7 @@ class Butun extends Component
      */
     public function __construct()
     {
-        //
+        
     }
 
     /**
